@@ -102,6 +102,8 @@ console.log(nombreEvento)
 
 // -----------------------------------------------  Filtro de Nombre
 
+
+
 function buscarPorNombre(eventoBuscado) {
 
     arrEventosEcontrados= arrayEventosObject.filter((evento)=> evento.nombre.toLowerCase().includes(eventoBuscado.toLowerCase()))
