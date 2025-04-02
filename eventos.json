@@ -1,0 +1,23 @@
+{
+    "proyecto": "Compra de tickets para eventos",
+    "categorias": ["Teatro", "Conciertos"],
+    "eventos":
+    [
+        {
+            "nombre":"QUEEN EL CONCIERTO - TRIBUTO",
+            "categoria": "Conciertos",
+            "costo_minimo": 55.00,
+            "dia": "Sábado",
+            "fecha": "26/04/2025",
+            "hora": "8:00 pm"
+        },
+        {
+            "nombre":"COMO OLVIDAR A TU EX",
+            "categoria": "Teatro",
+            "costo_minimo": 30.00,
+            "dia": "Jueves",
+            "fecha": "03/04/2025",
+            "hora": "8:30 pm"
+        }
+    ]
+}
