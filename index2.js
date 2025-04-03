@@ -36,6 +36,7 @@ let JSONeventos = '{ '+
  '}';
 
  
+ 
 console.log(JSONeventos)
 
 
@@ -46,35 +47,50 @@ let arrayEventosObject = JSONeventosObject.eventosRegistrados
 console.log(arrayEventosObject)
 
 
+/*
+Nota: Para probar las funciones, descomentar las líneas en donde se hace el llamado a cada una
+Líneas a descomentar: 
+ - Filtro de búsqueda por Categoría
+  >Forma 1: 83, 84, 85
+  >Forma 2: 101, 102
+  >Forma 3: 115, 116
+
+ - Filtro de búsqueda por Nombre
+  >Forma 1: 145, 146
+  >Forma 2: 169, 170
+  >Forma 3: 190, 191, 192
+
+*/
+
+
 // -----------------------------------------------  Filtro de búsqueda por Categoría
 
-// Utilizando el ciclo FOR
+// =>FORMA 1:  Utilizando el ciclo FOR
 
-function buscarPorCategoria(nombreCategoria) {
+function buscarPorCategoria(nombreCategoria, nombreCategoria2) {
 
     for (let i = 0; i < arrayEventosObject.length; i++) {
 
-        if (nombreCategoria === arrayEventosObject[i].categoria ) {
+        if (nombreCategoria === arrayEventosObject[i].categoria || nombreCategoria2 === arrayEventosObject[i].categoria) {
             
             arrEventosEcontrados.push(arrayEventosObject[i])
-        }
-
-        
+        }   
     }
 
     return console.log(arrEventosEcontrados)
 }
 
-//buscarPorCategoria("Conciertos")
+//buscarPorCategoria("Conciertos")  
+buscarPorCategoria("Deportes", "Teatro")
+//buscarPorCategoria("Deportes")
 
+// =>FORMA 2: Utilizando el ciclo FOR OF
 
-// Utilizando el ciclo FOR OF
-
-function buscarPorCategoria2(nombreCategoria) {
+function buscarPorCategoria2(nombreCategoria, nombreCategoria2) {
 
     for (const evento of arrayEventosObject) {
 
-        if (nombreCategoria === evento.categoria) {
+        if (nombreCategoria === evento.categoria || evento.categoria === nombreCategoria2) {
             arrEventosEcontrados.push(evento)
 
         }
@@ -82,10 +98,12 @@ function buscarPorCategoria2(nombreCategoria) {
     return console.log(arrEventosEcontrados)
 }
 
-//buscarPorCategoria2("Teatro")
+//buscarPorCategoria2("Deportes", "Teatro")
+//buscarPorCategoria2("Deportes")
 
 
-// Utilizando método de arrays: FILTER
+
+// =>FORMA 3: Utilizando método de arrays: FILTER
 
 function buscarPorCategoria3(nombreCategoria, nombreCategoria2) {
 
@@ -94,21 +112,81 @@ function buscarPorCategoria3(nombreCategoria, nombreCategoria2) {
     return console.log(arrEventosEcontrados)
 }
 
-buscarPorCategoria3("Deportes", "Teatro")
-
-let nombreEvento = arrEventosEcontrados[0].nombre
-
-console.log(nombreEvento)
-
-// -----------------------------------------------  Filtro de Nombre
+//buscarPorCategoria3("Deportes", "Teatro")
+//buscarPorCategoria3("Deportes")
 
 
 
-function buscarPorNombre(eventoBuscado) {
+// -----------------------------------------------  Filtro de búsqueda por Nombre
+
+// =>FORMA 1: Utilizando el ciclo FOR
+
+function buscarPorNombre1(eventoBuscado) {
+
+    let respuesta;
+
+    for (let i = 0; i < arrayEventosObject.length; i++) {
+        
+        console.log(arrayEventosObject[i].nombre.toLowerCase().includes(eventoBuscado.toLowerCase()))
+        if (arrayEventosObject[i].nombre.toLowerCase().includes(eventoBuscado.toLowerCase()) ){
+
+            respuesta = "Evento ha sido encontrado."
+            arrEventosEcontrados.push(arrayEventosObject[i])
+
+        } else{
+            respuesta = "Evento no ha sido encontrado. Intente otra búsqueda"
+        }
+    }
+
+    return console.log(`Su ${respuesta}`) + console.log(arrEventosEcontrados)
+
+}
+
+//buscarPorNombre1("Alfondo")
+//buscarPorNombre1("lima")
+
+
+// =>FORMA 2 :Utilizando el ciclo FOR OF
+
+
+function buscarPorNombre2(eventoBuscado) {
+    let respuesta;
+
+    for (const evento of arrayEventosObject) {
+
+        if (evento.nombre.toLowerCase().includes(eventoBuscado.toLowerCase())) {
+            respuesta = "Evento ha sido encontrado."
+
+            arrEventosEcontrados.push(evento)
+        } else{
+            respuesta = "Evento no ha sido encontrado. Intente otra búsqueda"
+
+        }
+    }
+    return console.log(`Su ${respuesta}`) + console.log(arrEventosEcontrados)
+}
+
+//buscarPorNombre2("Alfondo")
+//buscarPorNombre2("EX")
+
+
+// =>FORMA 3:  Utilizando método de arrays: FILTER
+
+
+function buscarPorNombre3(eventoBuscado) {
+    let respuesta;
 
     arrEventosEcontrados= arrayEventosObject.filter((evento)=> evento.nombre.toLowerCase().includes(eventoBuscado.toLowerCase()))
 
-    return console.log(arrEventosEcontrados)
+    if (arrEventosEcontrados.length != 0) {
+        respuesta = "Evento ha sido encontrado."
+    } else{
+        respuesta = "Evento no ha sido encontrado. Intente otra búsqueda"
+    }
+
+    return console.log(`Su ${respuesta}`) + console.log(arrEventosEcontrados)
 }
 
-buscarPorNombre("lima")
+//buscarPorNombre3("lima")
+//buscarPorNombre3("ex")
+//buscarPorNombre3("EX")
